@@ -1,0 +1,30 @@
+{
+  "name": "nepal-climate-hub",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "kysely": "kysely",
+    "db:gen": "kysely-codegen --out-file ./src/db/db.d.ts",
+    "m:lt": "kysely migrate:latest",
+    "m:up": "kysely migrate:up",
+    "m:dw": "kysely migrate:down"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.8",
+    "@hono/zod-validator": "^0.4.2",
+    "dotenv": "^16.4.7",
+    "hono": "^4.6.20",
+    "http-status-codes": "^2.3.0",
+    "kysely": "^0.27.5",
+    "pg": "^8.13.1",
+    "pino": "^9.6.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "@types/pg": "^8.11.11",
+    "kysely-codegen": "^0.17.0",
+    "kysely-ctl": "^0.10.1",
+    "tsx": "^4.7.1"
+  }
+}
