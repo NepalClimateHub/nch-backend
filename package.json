@@ -4,10 +4,10 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "kysely": "kysely",
-    "db:gen": "kysely-codegen --out-file ./src/db/db.d.ts",
-    "m:lt": "kysely migrate:latest",
-    "m:up": "kysely migrate:up",
-    "m:dw": "kysely migrate:down"
+    "gen": "kysely-codegen --out-file ./src/db/db.d.ts",
+    "latest": "kysely migrate:latest",
+    "up": "kysely migrate:up",
+    "down": "kysely migrate:down"
   },
   "dependencies": {
     "@hono/node-server": "^1.13.8",

@@ -7,6 +7,10 @@ import { trimTrailingSlash } from "hono/trailing-slash";
 import { HonoServer } from "./app/app.module.js";
 import { logger } from "./shared/logger.js";
 import env from "./shared/env.js";
+import { AuthRepository } from "./app/auth/auth.repository.js";
+import { db } from "./db/index.js";
+import { AuthService } from "./app/auth/auth.service.js";
+import { AuthController } from "./app/auth/auth.controller.js";
 
 const app = new Hono();
 
@@ -16,7 +20,10 @@ app.use(compress());
 app.use(httpLogger());
 app.use(trimTrailingSlash());
 
-const server = new HonoServer(app);
+const authRepository = new AuthRepository(db);
+const authService = new AuthService(authRepository);
+const authController = new AuthController(authService);
+const server = new HonoServer(app, authController);
 server.configure();
 
 const appPort = Number.parseInt(process.env.PORT as string) || 8080;

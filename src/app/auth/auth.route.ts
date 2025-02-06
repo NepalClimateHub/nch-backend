@@ -1,5 +1,5 @@
 import { Hono, type InferRequestType } from "hono";
-import { loginValidator } from "./validators/login.validator.js";
+import { loginValidator } from "./login.validator.js";
 
 const auth = new Hono();
 

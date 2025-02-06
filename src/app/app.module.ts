@@ -1,12 +1,15 @@
 import { Hono } from "hono";
 import { serveInternalServerError, serveNotFound } from "../shared/error.js";
-import auth from "./auth/auth.module.js";
+import auth from "./auth/auth.route.js";
+import type { AuthController } from "./auth/auth.controller.js";
 
 export class HonoServer {
   private app: Hono;
+  private controller: AuthController;
 
-  constructor(app: Hono) {
+  constructor(app: Hono, controller: AuthController) {
     this.app = app;
+    this.controller = controller;
   }
 
   public configure() {
@@ -14,19 +17,22 @@ export class HonoServer {
       return c.text("Hi!");
     });
 
-    // universal catchall
+    this.app.post("/users", this.controller.create);
+
+    this.app.post("/", async (c) => {
+      return c.json(await c.req.json());
+    })
+
     this.app.notFound((c) => {
       return serveNotFound(c);
     });
 
-    // universal errror handler
     this.app.onError((err, c) => {
-      return serveInternalServerError(c, err);
+      return serveInternalServerError(c, err.name);
     });
 
     const api = this.app.basePath("/api");
 
-    // register routes
     api.route('auth', auth)
   }
 }

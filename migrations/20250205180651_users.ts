@@ -8,8 +8,9 @@ export async function up(db: Kysely<any>): Promise<void> {
     .execute();
 
   await db.schema
-    .createTable("tbl_users")
-    .addColumn("id", "integer", (col) => col.primaryKey())
+    .createTable("users")
+    .ifNotExists()
+    .addColumn('id', 'serial', (col) => col.primaryKey())
     .addColumn("full_name", "varchar", (col) => col.notNull())
     .addColumn("email", "varchar", (col) => col.notNull())
     .addColumn("gender", "varchar", (col) => col.notNull())
@@ -36,6 +37,6 @@ export async function up(db: Kysely<any>): Promise<void> {
 }
 
 export async function down(db: Kysely<any>): Promise<void> {
-  await db.schema.dropTable("tbl_users").execute();
+  await db.schema.dropTable("users").execute();
   await db.schema.dropType("scope").execute();
 }
