@@ -13,7 +13,7 @@ export type Scope = "individual" | "nch" | "organization";
 
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
-export interface TblUsers {
+export interface Users {
   created_at: Generated<Timestamp>;
   email: string;
   emailVerificationExpiryTime: Timestamp | null;
@@ -21,7 +21,7 @@ export interface TblUsers {
   expertise: string | null;
   full_name: string;
   gender: string;
-  id: number;
+  id: Generated<number>;
   isActive: Generated<boolean | null>;
   isEmailVerified: Generated<boolean | null>;
   password: string;
@@ -34,5 +34,5 @@ export interface TblUsers {
 }
 
 export interface DB {
-  tbl_users: TblUsers;
+  users: Users;
 }

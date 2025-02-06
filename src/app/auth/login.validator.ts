@@ -8,6 +8,6 @@ const loginSchema = z.object({
 
 const loginValidator = zValidator("json", loginSchema);
 
-type LoginBody = z.infer<typeof loginSchema>;
+type LoginRequest = z.infer<typeof loginSchema>;
 
-export { type LoginBody, loginValidator };
+export { type LoginRequest, loginValidator };
