@@ -1,7 +1,6 @@
 import { Hono } from "hono";
-import { serveInternalServerError, serveNotFound } from "../shared/error.js";
-import auth from "./auth/auth.route.js";
-import type { AuthController } from "./auth/auth.controller.js";
+import { serveInternalServerError, serveNotFound } from "../../shared/error.js";
+import type { AuthController } from "./controller.js";
 
 export class HonoServer {
   private app: Hono;
@@ -30,9 +29,5 @@ export class HonoServer {
     this.app.onError((err, c) => {
       return serveInternalServerError(c, err.name);
     });
-
-    const api = this.app.basePath("/api");
-
-    api.route('auth', auth)
   }
 }
