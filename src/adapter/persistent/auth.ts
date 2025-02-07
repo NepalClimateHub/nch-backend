@@ -8,11 +8,13 @@ export interface DAO {
 }
 
 export class AuthRepository {
-    constructor(private db: Kysely<DB>) {
+    private db: Kysely<DB>;
+    constructor(db: Kysely<DB>) {
         this.db = db;
     }
 
     public async create(input: UserCreateDao) {
+        console.log("input: ", input);
         return this.
             db.
             insertInto("users").
