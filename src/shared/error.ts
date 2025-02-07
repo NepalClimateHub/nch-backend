@@ -7,7 +7,7 @@ const serveNotFound = (c: Context) => {
   return c.json({ error: getReasonPhrase(StatusCodes.NOT_FOUND) }, <ContentfulStatusCode>StatusCodes.NOT_FOUND);
 };
 
-const serveBadRequest = (c: Context, message: string) => {
+const serveBadRequest = (c: Context, message: any) => {
   return c.json({ error: message }, <ContentfulStatusCode>StatusCodes.BAD_REQUEST);
 };
 

@@ -13,8 +13,6 @@ export class AuthController {
     public async create(c: Context): Promise<Response> {
         const body = await c.req.json();
         const parsedBody = createUserSchema.parse(body);
-        console.log("body: ", parsedBody);
-        console.log("this service");
         const result = await this.service.create(parsedBody);
         const resultStringified = handeBigInt(result);
         return c.json(resultStringified);

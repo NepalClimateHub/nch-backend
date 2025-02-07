@@ -21,13 +21,5 @@ export class HonoServer {
     this.app.post("/", async (c) => {
       return c.json(await c.req.json());
     })
-
-    this.app.notFound((c) => {
-      return serveNotFound(c);
-    });
-
-    this.app.onError((err, c) => {
-      return serveInternalServerError(c, err.name);
-    });
   }
 }
