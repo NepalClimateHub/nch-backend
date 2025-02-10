@@ -24,13 +24,14 @@ const app = new OpenAPIHono();
 app.use(cors());
 app.use(compress());
 app.use(httpLogger());
-app.use(trimTrailingSlash());
+	app.use(trimTrailingSlash());
 
 // setup base path
 app.basePath("/api");
 
 // register routes
 appModules.map((module) => {
+
 	app.route(module.path, module.route);
 });
 
@@ -46,8 +47,8 @@ app.doc("/openapi.json", {
 app.get(
 	"/docs",
 	apiReference({
-		spec: {
-			url: "/openapi.json",
+			spec: {
+					url: "/openapi.json",
 		},
 		layout: "modern",
 	}),

@@ -2,7 +2,7 @@ pre-commit:
   parallel: true
   jobs:
     - run: pnpm format 
-      # glob: "*.{js,ts,jsx,tsx}"
+      glob: "*.{js,ts,jsx,tsx}"
 
     # - name: rubocop
     #   glob: "*.rb"
