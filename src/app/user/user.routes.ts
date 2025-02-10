@@ -5,20 +5,20 @@ import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
 const app = new OpenAPIHono();
 
 const createUserRoute = createRoute({
-  method: "post",
-  path: "/",
-  request: {
-    body: {
-      content: {
-        "application/json": {
-          schema: createUserRequestSchema,
-        },
-      },
-      required: true,
-    },
-  },
-  responses: {},
-  tags: ["user"],
+	method: "post",
+	path: "/",
+	request: {
+		body: {
+			content: {
+				"application/json": {
+					schema: createUserRequestSchema,
+				},
+			},
+			required: true,
+		},
+	},
+	responses: {},
+	tags: ["user"],
 });
 app.openapi(createUserRoute, createUserController);
 
