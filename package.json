@@ -5,6 +5,7 @@
     "dev": "tsx watch src/index.ts",
     "kysely": "kysely",
     "gen": "kysely-codegen --out-file ./src/db/db.d.ts",
+    "create": "kysely migrate:create",
     "latest": "kysely migrate:latest",
     "up": "kysely migrate:up",
     "down": "kysely migrate:down",
