@@ -1,8 +1,7 @@
-import type { Hono } from "hono";
 import { userRoutes } from "./user/index.js";
 import type { OpenAPIHono } from "@hono/zod-openapi";
 
-type AppRoutes = "auth" | "user";
+type AppRoutes = "auth" | "users";
 type AppModules = {
   path: AppRoutes;
   route: OpenAPIHono;
@@ -10,7 +9,7 @@ type AppModules = {
 
 export const appModules: AppModules[] = [
   {
-    path: "user",
+    path: "users",
     route: userRoutes.default,
   },
 ];
