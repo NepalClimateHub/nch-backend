@@ -25,7 +25,6 @@
     "zod-openapi": "^4.2.3"
   },
   "devDependencies": {
-    "@asteasolutions/zod-to-openapi": "^7.3.0",
     "@biomejs/biome": "^1.9.4",
     "@types/node": "^20.11.17",
     "@types/pg": "^8.11.11",

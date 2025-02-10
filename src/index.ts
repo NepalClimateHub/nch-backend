@@ -1,7 +1,6 @@
 import { serve } from "@hono/node-server";
 import { logger } from "./shared/logger.js";
 import env from "./shared/env.js";
-import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { compress } from "hono/compress";
 import { logger as httpLogger } from "hono/logger";
@@ -20,7 +19,6 @@ import { OpenAPIHono } from "@hono/zod-openapi";
 const appPort = Number.parseInt(process.env.PORT as string) || 8080;
 const appHost = String(process.env.HOST_URL) || "http://localhost";
 
-// const app = new Hono();
 const app = new OpenAPIHono();
 
 app.use(cors());
