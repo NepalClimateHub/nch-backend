@@ -14,7 +14,6 @@ import {
 import { ZodError } from "zod";
 import type { ZodErrorResponseFormat } from "./shared/types.js";
 import { appModules } from "./app/app.module.js";
-import { openAPISpecs } from "hono-openapi";
 import { apiReference } from "@scalar/hono-api-reference";
 import { OpenAPIHono } from "@hono/zod-openapi";
 
