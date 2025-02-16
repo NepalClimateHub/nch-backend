@@ -25,6 +25,32 @@ export type Scope = "individual" | "organization" | "superadmin";
 
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
+export interface EventGallery {
+	eventId: string | null;
+	id: string;
+	imageId: string | null;
+}
+
+export interface Events {
+	city: string;
+	country: string;
+	description: string;
+	email: string | null;
+	id: string;
+	name: string;
+	phoneNumber: string | null;
+	province: string;
+	publicImage: string | null;
+	publicImageSourceId: string | null;
+	slug: string;
+}
+
+export interface EventTags {
+	eventId: string | null;
+	id: string;
+	tagId: string | null;
+}
+
 export interface Events {
 	city: string;
 	country: string;
@@ -46,6 +72,32 @@ export interface Gallery {
 	publicImageSourceId: string | null;
 }
 
+export interface OrganizationGallery {
+	id: string;
+	imageId: string | null;
+	organizationId: string | null;
+}
+
+export interface Organizations {
+	city: string;
+	country: string;
+	description: string;
+	email: string | null;
+	id: string;
+	name: string;
+	phoneNumber: string | null;
+	province: string;
+	publicImage: string | null;
+	publicImageSourceId: string | null;
+	slug: string;
+}
+
+export interface OrganizationTags {
+	id: string;
+	organizationId: string | null;
+	tagId: string | null;
+}
+
 export interface Resource {
 	decription: string | null;
 	id: string;
@@ -59,7 +111,9 @@ export interface Resource {
 
 export interface Socials {
 	data: Generated<Json | null>;
+	eventId: string | null;
 	id: string;
+	organizationId: string | null;
 	userId: string | null;
 }
 
@@ -113,9 +167,13 @@ export interface UserTags {
 }
 
 export interface DB {
+	event_gallery: EventGallery;
 	event_tags: EventTags;
 	events: Events;
 	gallery: Gallery;
+	organization_gallery: OrganizationGallery;
+	organization_tags: OrganizationTags;
+	organizations: Organizations;
 	resource: Resource;
 	socials: Socials;
 	tags: Tags;
