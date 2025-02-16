@@ -3,7 +3,7 @@ import type { DB } from "../src/db/db.js";
 
 export async function up(db: Kysely<DB>): Promise<void> {
   await db.schema
-    .createTable("events")
+    .createTable("organizations")
     .ifNotExists()
     .addColumn("id", "varchar", (col) => col.primaryKey().unique())
     .addColumn("name", "text", (col) => col.notNull())
@@ -19,32 +19,32 @@ export async function up(db: Kysely<DB>): Promise<void> {
     .execute();
 
   await db.schema
-    .createTable("event_tags")
+    .createTable("organization_tags")
     .ifNotExists()
     .addColumn("id", "varchar", (col) => col.primaryKey().unique())
     .addColumn("tagId", "varchar", (col) =>
       col.references("tags.id").onDelete("cascade")
     )
-    .addColumn("eventId", "varchar", (col) =>
-      col.references("events.id").onDelete("cascade")
+    .addColumn("organizationId", "varchar", (col) =>
+      col.references("organizations.id").onDelete("cascade")
     )
     .execute();
 
   await db.schema
-    .createTable("event_gallery")
+    .createTable("organization_gallery")
     .ifNotExists()
     .addColumn("id", "varchar", (col) => col.primaryKey().unique())
     .addColumn("imageId", "varchar", (col) =>
       col.references("gallery.id").onDelete("cascade")
     )
-    .addColumn("eventId", "varchar", (col) =>
-      col.references("events.id").onDelete("cascade")
+    .addColumn("organizationId", "varchar", (col) =>
+      col.references("organizations.id").onDelete("cascade")
     )
     .execute();
 }
 
 export async function down(db: Kysely<DB>): Promise<void> {
-  await db.schema.dropTable("event_gallery").execute();
-  await db.schema.dropTable("event_tags").execute();
-  await db.schema.dropTable("events").execute();
+	await db.schema.dropTable("organization_gallery").execute();
+	await db.schema.dropTable("organization_tags").execute();
+	await db.schema.dropTable("organizations").execute();
 }
