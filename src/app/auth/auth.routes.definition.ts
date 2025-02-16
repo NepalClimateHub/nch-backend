@@ -6,6 +6,7 @@ const AUTH_TAG = "auth";
 export const registerIndividualRoute = createRoute({
 	method: "post",
 	path: "/register/individual",
+	summary: "Register an individual",
 	request: {
 		body: {
 			content: {
