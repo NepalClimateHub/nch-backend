@@ -13,6 +13,7 @@
     "format": "biome format --write ./src"
   },
   "dependencies": {
+    "@bugsnag/cuid": "^3.1.1",
     "@hono/node-server": "^1.13.8",
     "@hono/zod-openapi": "^0.18.4",
     "@scalar/hono-api-reference": "^0.5.172",
