@@ -6,15 +6,15 @@
 import type { ColumnType } from "kysely";
 
 export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
-	? ColumnType<S, I | undefined, U>
-	: ColumnType<T, T | undefined, T>;
+  ? ColumnType<S, I | undefined, U>
+  : ColumnType<T, T | undefined, T>;
 
 export type Json = JsonValue;
 
 export type JsonArray = JsonValue[];
 
 export type JsonObject = {
-	[x: string]: JsonValue | undefined;
+  [x: string]: JsonValue | undefined;
 };
 
 export type JsonPrimitive = boolean | number | string | null;
@@ -25,71 +25,101 @@ export type Scope = "individual" | "organization" | "superadmin";
 
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
+export interface Events {
+  city: string;
+  country: string;
+  description: string;
+  id: string;
+  name: string;
+  province: string;
+}
+
+export interface EventTags {
+  eventId: string | null;
+  id: string;
+  tagId: string | null;
+}
+
 export interface Gallery {
-	id: string;
-	publicUrl: string;
-	sourceId: string | null;
+  id: string;
+  publicImage: string;
+  publicImageSourceId: string | null;
+}
+
+export interface Resource {
+  decription: string | null;
+  id: string;
+  linkText: string | null;
+  publicImage: string | null;
+  publicImageSourceId: string | null;
+  sourceUrl: string;
+  title: string;
+  type: Generated<string | null>;
 }
 
 export interface Socials {
-	data: Generated<Json | null>;
-	id: string;
-	userId: string | null;
+  data: Generated<Json | null>;
+  id: string;
+  userId: string | null;
 }
 
 export interface Tags {
-	id: string;
-	isEventTag: Generated<boolean | null>;
-	isOrganizationTag: Generated<boolean | null>;
-	isUserTag: Generated<boolean | null>;
-	tag: string;
+  id: string;
+  isEventTag: Generated<boolean>;
+  isOrganizationTag: Generated<boolean>;
+  isUserTag: Generated<boolean>;
+  tag: string;
 }
 
 export interface UserGallery {
-	id: string;
-	itemId: string | null;
-	userId: string | null;
+  id: string;
+  imageId: string | null;
+  userId: string | null;
 }
 
 export interface Users {
-	affiliatedOrganization: string | null;
-	bio: string | null;
-	city: string;
-	country: string;
-	createdAt: Generated<Timestamp>;
-	email: string;
-	emailVerificationExpiryTime: Timestamp | null;
-	emailVerificationToken: string | null;
-	expertise: string | null;
-	fullName: string;
-	gender: string;
-	id: string;
-	isActive: Generated<boolean | null>;
-	isEmailVerified: Generated<boolean | null>;
-	password: string;
-	phoneNumber: string | null;
-	profession: string | null;
-	profileImage: string | null;
-	province: string;
-	requiresPasswordChange: Generated<boolean | null>;
-	resetPasswordExpiryTime: Timestamp | null;
-	resetPasswordToken: string | null;
-	scope: Generated<Scope | null>;
-	slug: string;
-	updatedAt: Generated<Timestamp>;
+  affiliatedOrganization: string | null;
+  bio: string | null;
+  city: string;
+  country: string;
+  createdAt: Generated<Timestamp>;
+  email: string;
+  emailVerificationExpiryTime: Timestamp | null;
+  emailVerificationToken: string | null;
+  expertise: string | null;
+  fullName: string;
+  gender: string;
+  id: string;
+  isActive: Generated<boolean | null>;
+  isEmailVerified: Generated<boolean | null>;
+  password: string;
+  phoneNumber: string | null;
+  profession: string | null;
+  province: string;
+  publicImage: string | null;
+  publicImageSourceId: string | null;
+  requiresPasswordChange: Generated<boolean | null>;
+  resetPasswordExpiryTime: Timestamp | null;
+  resetPasswordToken: string | null;
+  scope: Generated<Scope | null>;
+  slug: string;
+  updatedAt: Generated<Timestamp>;
 }
 
 export interface UserTags {
-	id: string;
-	tagId: string | null;
-	userId: string | null;
+  id: string;
+  tagId: string | null;
+  userId: string | null;
 }
 
 export interface DB {
-	gallery: Gallery;
-	socials: Socials;
-	tags: Tags;
-	user_gallery: UserGallery;
-	user_tags: UserTags;
-	users: Users;
+  event_tags: EventTags;
+  events: Events;
+  gallery: Gallery;
+  resource: Resource;
+  socials: Socials;
+  tags: Tags;
+  user_gallery: UserGallery;
+  user_tags: UserTags;
+  users: Users;
 }
