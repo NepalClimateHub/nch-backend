@@ -12,7 +12,8 @@
     "db:down": "kysely migrate:down",
     "db:drop": "tsx ./src/scripts/drop_database.ts",
     "db:create": "tsx ./src/scripts/create_database.ts",
-    "format": "biome format --write ./src"
+    "format": "biome format --write ./src",
+    "migrate": "tsx ./src/scripts/migrate.ts"
   },
   "dependencies": {
     "@bugsnag/cuid": "^3.1.1",
