@@ -10,6 +10,7 @@
     "db:latest": "kysely migrate:latest",
     "db:up": "kysely migrate:up",
     "db:down": "kysely migrate:down",
+    "db:drop": "tsx ./src/scripts/drop_database.ts",
     "format": "biome format --write ./src"
   },
   "dependencies": {
