@@ -23,7 +23,8 @@ export async function up(db: Kysely<DB>): Promise<void> {
     .addColumn("profession", "varchar")
     .addColumn("expertise", "varchar")
     .addColumn("affiliatedOrganization", "varchar") //different from registered organization
-    .addColumn("profileImage", "text")
+    .addColumn("publicImageSourceId", "varchar") //for future, something like s3 key
+    .addColumn("publicImage", "text")
     .addColumn("slug", "varchar", (col) => col.notNull().unique())
     .addColumn("scope", sql`scope`, (col) => col.defaultTo("individual"))
     .addColumn("isEmailVerified", "boolean", (col) => col.defaultTo(false))

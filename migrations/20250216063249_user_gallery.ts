@@ -3,10 +3,12 @@ import type { DB } from "../src/db/db.js";
 
 export async function up(db: Kysely<DB>): Promise<void> {
   await db.schema
-    .createTable("socials")
+    .createTable("user_gallery")
     .ifNotExists()
     .addColumn("id", "varchar", (col) => col.primaryKey().unique())
-    .addColumn("data", "json", (col) => col.defaultTo("{}"))
+    .addColumn("imageId", "varchar", (col) =>
+      col.references("gallery.id").onDelete("cascade")
+    )
     .addColumn("userId", "varchar", (col) =>
       col.references("users.id").onDelete("cascade")
     )
@@ -14,5 +16,5 @@ export async function up(db: Kysely<DB>): Promise<void> {
 }
 
 export async function down(db: Kysely<DB>): Promise<void> {
-  await db.schema.dropTable("socials").execute();
+  await db.schema.dropTable("user_gallery").execute();
 }
