@@ -1,6 +1,7 @@
 import { sql, type Kysely } from "kysely";
+import type { DB } from "../src/db/db.js";
 
-export async function up(db: Kysely<any>): Promise<void> {
+export async function up(db: Kysely<DB>): Promise<void> {
   // scope enum
   await db.schema
     .createType("scope")
@@ -11,11 +12,14 @@ export async function up(db: Kysely<any>): Promise<void> {
     .createTable("users")
     .ifNotExists()
     .addColumn('id', 'serial', (col) => col.primaryKey())
-    .addColumn("full_name", "varchar", (col) => col.notNull())
+    .addColumn("fullName", "varchar", (col) => col.notNull())
     .addColumn("email", "varchar", (col) => col.notNull())
+    .addColumn("phoneNumber", "varchar")
     .addColumn("gender", "varchar", (col) => col.notNull())
+    .addColumn("province", "varchar", (col) => col.notNull())
     .addColumn("profession", "varchar")
     .addColumn("expertise", "varchar")
+    .addColumn("affiliatedOrganization", "varchar") //different from registered organization
     .addColumn("scope", sql`scope`, (col) => col.defaultTo("individual"))
     .addColumn("isEmailVerified", "boolean", (col) => col.defaultTo(false))
     .addColumn("isActive", "boolean", (col) => col.defaultTo(false))
@@ -27,16 +31,16 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn("resetPasswordExpiryTime", "timestamptz")
     .addColumn("emailVerificationToken", "varchar")
     .addColumn("emailVerificationExpiryTime", "timestamptz")
-    .addColumn("created_at", "timestamptz", (col) =>
+    .addColumn("createdAt", "timestamptz", (col) =>
       col.defaultTo(sql`CURRENT_TIMESTAMP`).notNull()
     )
-    .addColumn("updated_at", "timestamptz", (col) =>
+    .addColumn("updatedAt", "timestamptz", (col) =>
       col.defaultTo(sql`CURRENT_TIMESTAMP`).notNull()
     )
     .execute();
 }
 
-export async function down(db: Kysely<any>): Promise<void> {
+export async function down(db: Kysely<DB>): Promise<void> {
   await db.schema.dropTable("users").execute();
   await db.schema.dropType("scope").execute();
 }
