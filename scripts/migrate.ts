@@ -1,4 +1,4 @@
-import { db } from "../db/index.js";
+import { db } from "../src/db/index.js";
 import ActivistJSON from "./data/activists.json" assert { type: "json" };
 import EventJSON from "./data/events.json" assert { type: "json" };
 import OrganizationJSON from "./data/organizations.json" assert {
@@ -100,13 +100,16 @@ export interface Socials {
 				continue;
 			}
 			for (const t of tags) {
-				invertTable[t] = {
-					id: cuid(),
-					tag: t,
-					isEventTag: false,
-					isOrganizationTag: false,
-					isUserTag: true,
-				};
+				if (!invertTable[t]) {
+					invertTable[t] = {
+						id: cuid(),
+						tag: t,
+						isEventTag: false,
+						isOrganizationTag: false,
+						isUserTag: true,
+					};
+				}
+				invertTable[t].isUserTag = true;
 			}
 		}
 
@@ -116,13 +119,16 @@ export interface Socials {
 				continue;
 			}
 			for (const t of tags) {
-				invertTable[t] = {
-					id: cuid(),
-					tag: t,
-					isEventTag: true,
-					isOrganizationTag: false,
-					isUserTag: false,
-				};
+				if (!invertTable[t]) {
+					invertTable[t] = {
+						id: cuid(),
+						tag: t,
+						isEventTag: true,
+						isOrganizationTag: false,
+						isUserTag: false,
+					};
+				}
+				invertTable[t].isEventTag = true;
 			}
 		}
 
@@ -132,7 +138,7 @@ export interface Socials {
 				continue;
 			}
 			for (const t of tags) {
-				if (invertTable[t]) {
+				if (!invertTable[t]) {
 					invertTable[t] = {
 						id: cuid(),
 						tag: t,
@@ -141,6 +147,7 @@ export interface Socials {
 						isUserTag: false,
 					};
 				}
+				invertTable[t].isOrganizationTag = true;
 			}
 		}
 
