@@ -6,15 +6,15 @@
 import type { ColumnType } from "kysely";
 
 export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
-	? ColumnType<S, I | undefined, U>
-	: ColumnType<T, T | undefined, T>;
+  ? ColumnType<S, I | undefined, U>
+  : ColumnType<T, T | undefined, T>;
 
 export type Json = JsonValue;
 
 export type JsonArray = JsonValue[];
 
 export type JsonObject = {
-	[x: string]: JsonValue | undefined;
+  [x: string]: JsonValue | undefined;
 };
 
 export type JsonPrimitive = boolean | number | string | null;
@@ -25,159 +25,132 @@ export type Scope = "individual" | "organization" | "superadmin";
 
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
-export interface EventGallery {
-	eventId: string | null;
-	id: string;
-	imageId: string | null;
-}
-
 export interface Events {
-	city: string;
-	country: string;
-	description: string;
-	email: string | null;
-	id: string;
-	name: string;
-	phoneNumber: string | null;
-	province: string;
-	publicImage: string | null;
-	publicImageSourceId: string | null;
-	slug: string;
+  city: string;
+  country: string;
+  description: string;
+  id: string;
+  name: string;
+  province: string;
 }
 
 export interface EventTags {
-	eventId: string | null;
-	id: string;
-	tagId: string | null;
-}
-
-export interface Events {
-	city: string;
-	country: string;
-	description: string;
-	id: string;
-	name: string;
-	province: string;
-}
-
-export interface EventTags {
-	eventId: string | null;
-	id: string;
-	tagId: string | null;
+  eventId: string | null;
+  id: string;
+  tagId: string | null;
 }
 
 export interface Gallery {
-	id: string;
-	publicImage: string;
-	publicImageSourceId: string | null;
+  id: string;
+  publicImage: string;
+  publicImageSourceId: string | null;
 }
 
 export interface OrganizationGallery {
-	id: string;
-	imageId: string | null;
-	organizationId: string | null;
+  id: string;
+  imageId: string | null;
+  organizationId: string | null;
 }
 
 export interface Organizations {
-	city: string;
-	country: string;
-	description: string;
-	email: string | null;
-	id: string;
-	name: string;
-	phoneNumber: string | null;
-	province: string;
-	publicImage: string | null;
-	publicImageSourceId: string | null;
-	slug: string;
+  city: string;
+  country: string;
+  description: string;
+  email: string | null;
+  id: string;
+  name: string;
+  phoneNumber: string | null;
+  province: string;
+  publicImage: string | null;
+  publicImageSourceId: string | null;
+  slug: string;
 }
 
 export interface OrganizationTags {
-	id: string;
-	organizationId: string | null;
-	tagId: string | null;
+  id: string;
+  organizationId: string | null;
+  tagId: string | null;
 }
 
 export interface Resource {
-	decription: string | null;
-	id: string;
-	linkText: string | null;
-	publicImage: string | null;
-	publicImageSourceId: string | null;
-	sourceUrl: string;
-	title: string;
-	type: Generated<string | null>;
+  decription: string | null;
+  id: string;
+  linkText: string | null;
+  publicImage: string | null;
+  publicImageSourceId: string | null;
+  sourceUrl: string;
+  title: string;
+  type: Generated<string | null>;
 }
 
 export interface Socials {
-	data: Generated<Json | null>;
-	eventId: string | null;
-	id: string;
-	organizationId: string | null;
-	userId: string | null;
+  data: Generated<Json | null>;
+  eventId: string | null;
+  id: string;
+  organizationId: string | null;
+  userId: string | null;
 }
 
 export interface Tags {
-	id: string;
-	isEventTag: Generated<boolean>;
-	isOrganizationTag: Generated<boolean>;
-	isUserTag: Generated<boolean>;
-	tag: string;
+  id: string;
+  isEventTag: Generated<boolean>;
+  isOrganizationTag: Generated<boolean>;
+  isUserTag: Generated<boolean>;
+  tag: string;
 }
 
 export interface UserGallery {
-	id: string;
-	imageId: string | null;
-	userId: string | null;
+  id: string;
+  imageId: string | null;
+  userId: string | null;
 }
 
 export interface Users {
-	affiliatedOrganization: string | null;
-	bio: string | null;
-	city: string;
-	country: string;
-	createdAt: Generated<Timestamp>;
-	email: string;
-	emailVerificationExpiryTime: Timestamp | null;
-	emailVerificationToken: string | null;
-	expertise: string | null;
-	fullName: string;
-	gender: string;
-	id: string;
-	isActive: Generated<boolean | null>;
-	isEmailVerified: Generated<boolean | null>;
-	password: string;
-	phoneNumber: string | null;
-	profession: string | null;
-	province: string;
-	publicImage: string | null;
-	publicImageSourceId: string | null;
-	requiresPasswordChange: Generated<boolean | null>;
-	resetPasswordExpiryTime: Timestamp | null;
-	resetPasswordToken: string | null;
-	scope: Generated<Scope | null>;
-	slug: string;
-	updatedAt: Generated<Timestamp>;
+  affiliatedOrganization: string | null;
+  bio: string | null;
+  city: string;
+  country: string;
+  createdAt: Generated<Timestamp>;
+  email: string;
+  emailVerificationExpiryTime: Timestamp | null;
+  emailVerificationToken: string | null;
+  expertise: string | null;
+  fullName: string;
+  gender: string;
+  id: string;
+  isActive: Generated<boolean | null>;
+  isEmailVerified: Generated<boolean | null>;
+  password: string;
+  phoneNumber: string | null;
+  profession: string | null;
+  province: string;
+  publicImage: string | null;
+  publicImageSourceId: string | null;
+  requiresPasswordChange: Generated<boolean | null>;
+  resetPasswordExpiryTime: Timestamp | null;
+  resetPasswordToken: string | null;
+  scope: Generated<Scope | null>;
+  slug: string;
+  updatedAt: Generated<Timestamp>;
 }
 
 export interface UserTags {
-	id: string;
-	tagId: string | null;
-	userId: string | null;
+  id: string;
+  tagId: string | null;
+  userId: string | null;
 }
 
 export interface DB {
-	event_gallery: EventGallery;
-	event_tags: EventTags;
-	events: Events;
-	gallery: Gallery;
-	organization_gallery: OrganizationGallery;
-	organization_tags: OrganizationTags;
-	organizations: Organizations;
-	resource: Resource;
-	socials: Socials;
-	tags: Tags;
-	user_gallery: UserGallery;
-	user_tags: UserTags;
-	users: Users;
+  event_tags: EventTags;
+  events: Events;
+  gallery: Gallery;
+  organization_gallery: OrganizationGallery;
+  organization_tags: OrganizationTags;
+  organizations: Organizations;
+  resource: Resource;
+  socials: Socials;
+  tags: Tags;
+  user_gallery: UserGallery;
+  user_tags: UserTags;
+  users: Users;
 }
