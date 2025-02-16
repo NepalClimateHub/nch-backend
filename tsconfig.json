@@ -3,6 +3,7 @@
     "target": "ESNext",
     "module": "NodeNext",
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "strict": true,
     "verbatimModuleSyntax": true,
     "skipLibCheck": true,
