@@ -9,30 +9,73 @@ export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
 	? ColumnType<S, I | undefined, U>
 	: ColumnType<T, T | undefined, T>;
 
-export type Scope = "individual" | "nch" | "organization";
+export type Json = JsonValue;
+
+export type JsonArray = JsonValue[];
+
+export type JsonObject = {
+	[x: string]: JsonValue | undefined;
+};
+
+export type JsonPrimitive = boolean | number | string | null;
+
+export type JsonValue = JsonArray | JsonObject | JsonPrimitive;
+
+export type Scope = "individual" | "organization" | "superadmin";
 
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
+export interface Socials {
+	data: Generated<Json | null>;
+	id: string;
+	userId: string | null;
+}
+
+export interface Tags {
+	id: string;
+	isEventTag: Generated<boolean | null>;
+	isOrganizationTag: Generated<boolean | null>;
+	isUserTag: Generated<boolean | null>;
+	tag: string;
+}
+
 export interface Users {
-	created_at: Generated<Timestamp>;
+	affiliatedOrganization: string | null;
+	bio: string | null;
+	city: string;
+	country: string;
+	createdAt: Generated<Timestamp>;
 	email: string;
 	emailVerificationExpiryTime: Timestamp | null;
 	emailVerificationToken: string | null;
 	expertise: string | null;
-	full_name: string;
+	fullName: string;
 	gender: string;
-	id: Generated<number>;
+	id: string;
 	isActive: Generated<boolean | null>;
 	isEmailVerified: Generated<boolean | null>;
 	password: string;
+	phoneNumber: string | null;
 	profession: string | null;
+	profileImage: string | null;
+	province: string;
 	requiresPasswordChange: Generated<boolean | null>;
 	resetPasswordExpiryTime: Timestamp | null;
 	resetPasswordToken: string | null;
 	scope: Generated<Scope | null>;
-	updated_at: Generated<Timestamp>;
+	slug: string;
+	updatedAt: Generated<Timestamp>;
+}
+
+export interface UserTags {
+	id: string;
+	tagId: string | null;
+	userId: string | null;
 }
 
 export interface DB {
+	socials: Socials;
+	tags: Tags;
+	user_tags: UserTags;
 	users: Users;
 }

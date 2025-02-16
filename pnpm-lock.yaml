@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@bugsnag/cuid':
+        specifier: ^3.1.1
+        version: 3.1.1
       '@hono/node-server':
         specifier: ^1.13.8
         version: 1.13.8(hono@4.6.20)
@@ -123,6 +126,9 @@ packages:
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
+
+  '@bugsnag/cuid@3.1.1':
+    resolution: {integrity: sha512-d2z4b0rEo3chI07FNN1Xds8v25CNeekecU6FC/2Fs9MxY2EipkZTThVcV2YinMn8dvRUlViKOyC50evoUxg8tw==}
 
   '@esbuild/aix-ppc64@0.23.1':
     resolution: {integrity: sha512-6VhYk1diRqrhBAqpJEdjASR/+WVRtfjpqKuNw11cLiaWpAT/Uu+nokB+UJnevzy/P9C/ty6AOe0dwueMrGh/iQ==}
@@ -937,6 +943,8 @@ snapshots:
 
   '@biomejs/cli-win32-x64@1.9.4':
     optional: true
+
+  '@bugsnag/cuid@3.1.1': {}
 
   '@esbuild/aix-ppc64@0.23.1':
     optional: true

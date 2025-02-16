@@ -5,21 +5,26 @@ export async function up(db: Kysely<DB>): Promise<void> {
   // scope enum
   await db.schema
     .createType("scope")
-    .asEnum(["nch", "organization", "individual"])
+    .asEnum(["superadmin", "organization", "individual"])
     .execute();
 
   await db.schema
     .createTable("users")
     .ifNotExists()
-    .addColumn('id', 'serial', (col) => col.primaryKey())
+    .addColumn("id", "varchar", (col) => col.primaryKey().unique())
+    .addColumn("bio", "text")
     .addColumn("fullName", "varchar", (col) => col.notNull())
     .addColumn("email", "varchar", (col) => col.notNull())
     .addColumn("phoneNumber", "varchar")
     .addColumn("gender", "varchar", (col) => col.notNull())
     .addColumn("province", "varchar", (col) => col.notNull())
+    .addColumn("city", "varchar", (col) => col.notNull())
+    .addColumn("country", "varchar", (col) => col.notNull())
     .addColumn("profession", "varchar")
     .addColumn("expertise", "varchar")
     .addColumn("affiliatedOrganization", "varchar") //different from registered organization
+    .addColumn("profileImage", "text")
+    .addColumn("slug", "varchar", (col) => col.notNull().unique())
     .addColumn("scope", sql`scope`, (col) => col.defaultTo("individual"))
     .addColumn("isEmailVerified", "boolean", (col) => col.defaultTo(false))
     .addColumn("isActive", "boolean", (col) => col.defaultTo(false))
