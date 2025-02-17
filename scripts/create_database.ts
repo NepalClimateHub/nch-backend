@@ -5,7 +5,7 @@ dotenv.config();
 
 const { Pool } = pg;
 
-function dropDatabase(): void {
+function resetDatabase(): void {
 	const dbURL: string = process.env.DATABASE_URL ?? "";
 	if (!dbURL) {
 		throw new Error("DATABASE_URL is not set");
@@ -29,4 +29,4 @@ function dropDatabase(): void {
 		});
 }
 
-dropDatabase();
+resetDatabase();
