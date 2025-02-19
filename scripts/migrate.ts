@@ -1,3 +1,4 @@
+import { migrateActivists } from "./migrate_activists.js";
 import { migrateOrganizations } from "./migrate_organzations.js";
 import { migrateTags } from "./migrate_tags.js";
 
@@ -9,6 +10,10 @@ switch (arg) {
         break;
     case "organizations":
         migrateOrganizations()
+        break;
+    case "activists":
+    case "users":
+        migrateActivists()
         break;
     case "all":
         migrateTags()
